@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { VscEyeClosed } from "react-icons/vsc";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn, signUp } from "../../actions/auth";
 
 function Auth() {
   const Navigate = useNavigate();
-  const data = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const [userData, setUserData] = useState({

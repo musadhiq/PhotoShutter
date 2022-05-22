@@ -1,20 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
-import { createPost } from "../../actions/posts";
+import { createPost, updatePost } from "../../actions/posts";
 import { VscEyeClosed } from "react-icons/vsc";
 import { Link, useNavigate } from "react-router-dom";
 
-function Form({ submit }) {
+function Form({ submit, postData, setPostData }) {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
-  const [postData, setPostData] = useState({
-    title: "",
-    message: "",
-    tags: "",
-    selectedFile: "",
-  });
+
   const handleClear = (e) => {
     setPostData({
       title: "",
@@ -26,11 +21,17 @@ function Form({ submit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const isNull = postData.title === "" || postData.selectedFile === "";
-    if (!isNull) {
-      dispatch(createPost({ ...postData, name: user?.result?.userName }));
+    if (!isNull && postData._id) {
+      dispatch(
+        updatePost({ ...postData, name: user?.result?.userName }, postData._id)
+      );
       Navigate("/");
+      handleClear();
+    } else if (!isNull) {
+      dispatch(createPost({ ...postData, name: user?.result?.userName }));
+      handleClear();
     } else {
-      console.log("fill the values");
+      return "Fill the Values";
     }
   };
 
@@ -43,26 +44,26 @@ function Form({ submit }) {
       </div>
       <h1 className="heading">Create new Post</h1>
       <form className="form_field">
-        {postData.selectedFile ? (
+        {postData.selectedFile && (
           <div className="file_img">
             <img
               className="selected_file"
               src={postData.selectedFile}
-              alt="hehe"
-            />
-          </div>
-        ) : (
-          <div className="file_upload">
-            <FileBase
-              type="file"
-              multiple={false}
-              value={postData.selectedFile}
-              onDone={({ base64 }) =>
-                setPostData({ ...postData, selectedFile: base64 })
-              }
+              alt="post"
             />
           </div>
         )}
+        <div className="file_upload">
+          <FileBase
+            type="file"
+            accept="image/*"
+            multiple={false}
+            value={postData.selectedFile}
+            onDone={({ base64 }) =>
+              setPostData({ ...postData, selectedFile: base64 })
+            }
+          />
+        </div>
         <input
           required
           type="text"
@@ -83,18 +84,19 @@ function Form({ submit }) {
         <input
           type="text"
           name="tags"
-          placeholder="Enter tags"
+          placeholder="Enter tags comma separated(max: 5)"
           value={postData.tags}
-          onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+          onChange={(e) =>
+            setPostData({ ...postData, tags: e.target.value.split(",", 5) })
+          }
         />
-
         <div className="buttons">
           <button
             className="btn btn_submit"
             type="submit"
             onClick={handleSubmit}
           >
-            Submit
+            {postData._id ? "Update Post" : "Submit"}
           </button>
           <button className="btn btn_clear" type="clear" onClick={handleClear}>
             Clear

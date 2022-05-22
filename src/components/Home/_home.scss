@@ -24,6 +24,11 @@
         background-color: $blue;
         text-align: center;
         padding: 9px;
+        @media screen and (max-width: $small) {
+            right: 30px;
+            bottom: 30px;
+
+          }
         &:hover{
             background-color: $text-color;
             .add_post_btn{

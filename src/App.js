@@ -12,6 +12,13 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   const [post, setPost] = useState(true);
 
+  const [postData, setPostData] = useState({
+    title: "",
+    message: "",
+    tags: "",
+    selectedFile: "",
+  });
+
   const handlesubmit = () => {
     setPost(!post);
   };
@@ -23,14 +30,18 @@ function App() {
     <div className="app">
       <NavBar />
       <Routes>
-        <Route path="/" element={<Posts />} />
+        <Route path="/" element={<Posts setPostData={setPostData} />} />
         <Route path="sign_up" element={<Auth />} />
         <Route path="sign_in" element={<Auth />} />
         <Route
           path="/new_post"
           element={
             <div className="form_container">
-              <Form submit={handlesubmit} />
+              <Form
+                submit={handlesubmit}
+                postData={postData}
+                setPostData={setPostData}
+              />
             </div>
           }
         />

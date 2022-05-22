@@ -10,7 +10,6 @@
         justify-content: center;
         form.auth_sign{
             padding: 15px;
-            border: .4px solid $secondary-color;
             width: max-content;
             display: flex;
             justify-content: center;
@@ -23,7 +22,6 @@
                 width: 100%;
                 text-align: start;
                 border-radius: 8px;
-                border: .3px solid $secondary-color;
                 label{
 
                 }
@@ -42,6 +40,7 @@
                 display: flex;
                 div{
                     padding: 0%;
+                    margin: 0;
                 }
             }
             .buttons{

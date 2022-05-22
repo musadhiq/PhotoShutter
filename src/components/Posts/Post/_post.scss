@@ -2,9 +2,13 @@
     border: .1px solid $light-dark;
     margin: 8px 14px;
     width: 280px;
+    height: fit-content;
     border-radius: 5px;
     overflow: hidden;
     position: relative;
+    @media screen and (max-width: $small) {
+        width: 100%;
+      }
     .overlay{
         display: flex;
         padding: 0 5px;
@@ -26,11 +30,13 @@
     }
     .post_top{
         width: 280px;
-        height: 180px;
         overflow: hidden;
-        img{
+        @media screen and (max-width: $small) {
             width: 100%;
 
+          }
+        img{
+            width: 100%;
         }
     }
     .post_content{
@@ -49,18 +55,26 @@
     }
     .post_footer{
         padding: 10px;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        span.likes{
-            font-size: 1.3rem;
-            .like{
-                cursor: pointer;
-            }
+        .tags{
+            color: $text-color-secondary;
+            font-size: .8rem;
         }
-        span.count{
-            font-size: .7rem;
-            font-family: cursive;
+        
+        .likes-bar{
+
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            span.likes{
+                font-size: 1.3rem;
+                .like{
+                    cursor: pointer;
+                }
+            }
+            span.count{
+                font-size: .7rem;
+                font-family: cursive;
+            }
         }
     }
 }

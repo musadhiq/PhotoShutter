@@ -1,11 +1,12 @@
 .form{
-    background-color: $secondary-color;
     width: 90%;
     height: 100%;
     text-align: center;
     padding: 20px 30px;
     color: #fff;
-    
+    @media screen and (max-width: $small) {
+        padding: 20px 0px;
+      }
     .close_container{
         text-align: right;
         .close_btn{
@@ -20,6 +21,9 @@
         gap: 10px;
         margin: 20px 30px;
         text-align: center;
+        @media screen and (max-width: $small) {
+            margin: 20px 0px;
+          }
         .file_img{
             width: 100%;
             text-align: center;

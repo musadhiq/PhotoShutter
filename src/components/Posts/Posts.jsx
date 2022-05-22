@@ -2,7 +2,7 @@ import React from "react";
 import Post from "./Post/Post";
 import { useSelector } from "react-redux";
 
-function Posts() {
+function Posts({ setPostData }) {
   const data = useSelector((state) => state.posts);
   return (
     <div className="posts_container">
@@ -10,7 +10,7 @@ function Posts() {
         ?.slice(0)
         .reverse()
         .map((item, index) => (
-          <Post data={item} key={index} />
+          <Post data={item} key={index} setPostData={setPostData} />
         ))}
     </div>
   );

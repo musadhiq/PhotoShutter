@@ -4,5 +4,8 @@ export const DELETE = "DELETE";
 export const UPDATE = "UPDATE";
 export const LIKE = "LIKE";
 export const EDIT_POST = "EDIT_POST";
+
+// auth
+
 export const SIGNIN = "SIGNIN";
 export const SIGNUP = "SIGNUP";

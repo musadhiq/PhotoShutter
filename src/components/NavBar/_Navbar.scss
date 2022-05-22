@@ -47,6 +47,54 @@ nav{
         display: flex;
         align-items: center;
         gap: 10px;
+        div.details{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            .drop-down-icon{
+                cursor: pointer;
+                font-size: 2rem;
+            }
+            .drop-down{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 5vh;
+                right: 10px;
+                z-index: 100;
+                width: max-content;
+                background-color: $secondary-color;
+                -moz-backface-visibility:blur(4) ;
+                padding: 10px 20px ;
+                border-radius: 2px;
+                .nav_userImg{
+                    font-size: 1rem;
+                    padding-right: 5px;
+                    cursor: pointer;
+                    text-decoration: none;
+                    text-align: center;
+                    padding: 8px 16px;
+                    &:hover{
+                        background-color: $primary-color;
+                    }
+                }
+                button{
+                    cursor: pointer;
+                    padding: 8px 18px;
+                    background-color: $blue;
+                    border: none;
+                    outline: none;
+                    border-radius: 3px;
+                    font-weight: 600;
+                    color: #fff;
+                    &:hover{
+                        background-color: red;
+                    }
+                }
+            }
+        }
         .nav_userImg{
             font-size: 1.8rem;
         }

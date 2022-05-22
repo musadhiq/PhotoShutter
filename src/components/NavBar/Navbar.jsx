@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import jwt from "jwt-decode";
-import { useLocation } from "react-router-dom";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
   RiMenuUnfoldLine,
@@ -10,15 +10,26 @@ import {
 import { Link } from "react-router-dom";
 
 function NavBar() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
+  const [toggler, setToggler] = useState(false);
   const Location = useLocation();
+  const navigate = useNavigate();
 
+  const handleLogOut = () => {
+    localStorage.clear();
+    navigate("/sign_in");
+  };
+  const handleToggler = () => {
+    setToggler(!toggler);
+  };
   useEffect(() => {
     if (localStorage.getItem("profile")) {
-      const data = JSON.parse(localStorage.getItem("profile"));
-      setUser(jwt(data.token));
+      const data = JSON.parse(localStorage.getItem("profile")).result;
+      setUser(data);
+    } else {
+      setUser(null);
     }
-  }, [Location]);
+  }, [Location, user]);
 
   return (
     <nav>
@@ -41,18 +52,34 @@ function NavBar() {
         </form>
       </div> */}
       <div className="user">
-        <span>{user?.userName}</span>
-        <div className="nav_userImg">
-          {user?._id ? (
-            <Link to={"/profile"}>
+        {user?._id ? (
+          <div className="details">
+            <span>{user?.userName} </span>
+            <span className="drop-down-icon" onClick={handleToggler}>
+              <RiArrowDropDownLine />
+            </span>
+            {toggler && (
+              <div className="drop-down">
+                <Link
+                  to={"/profile"}
+                  className="nav_userImg"
+                  onClick={handleToggler}
+                >
+                  <RiUserSmileLine /> Profile
+                </Link>
+                <button className="log-out" onClick={handleLogOut}>
+                  Log Out
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="nav_userImg">
+            <Link to={"/sign_in"}>
               <RiUserSmileLine />
             </Link>
-          ) : (
-            <Link to={"/sign_up"}>
-              <RiUserSmileLine />
-            </Link>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </nav>
   );
