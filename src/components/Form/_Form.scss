@@ -1,0 +1,75 @@
+.form{
+    background-color: $secondary-color;
+    width: 90%;
+    height: 100%;
+    text-align: center;
+    padding: 20px 30px;
+    color: #fff;
+    
+    .close_container{
+        text-align: right;
+        .close_btn{
+            cursor: pointer;
+            color: $text-color;
+            font-size: 1.2rem;
+        }
+    }
+    .form_field{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 20px 30px;
+        text-align: center;
+        .file_img{
+            width: 100%;
+            text-align: center;
+            .selected_file{
+                max-width: 600px;
+                max-height: 400px;
+            }
+        }
+        input,textarea{
+            width: 100%;
+            font-size: 1rem;
+            padding: 10px 15px;
+            margin: 5px 0;
+            resize: none;
+            border-radius: 5px;
+            background-color: $light-dark;
+            outline: none;
+            border: none;
+            color: $text-color;
+            &:active,&:focus{
+                color: $text-color;
+                outline: none;
+                border: none;
+            }
+        }
+
+        .file_upload{
+            width: 100%;
+        }
+        .buttons{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .btn{
+            width: 100%;
+          padding: 10px 15px;
+          font-weight: 500;
+          color: #fff;
+          border: none;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .btn_submit{
+            background-color: $blue;
+
+        }
+        .btn_clear{
+            background-color: red;
+        }
+    }
+}

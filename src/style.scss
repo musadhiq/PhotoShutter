@@ -1,0 +1,40 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+// variables
+$primary-color: #18191A;
+$secondary-color: #232626;
+$light-dark: #333333;
+$text-color: #FFFFFF;
+$text-color-secondary: #73736F;
+$blue:#2563EB;
+body{
+    background-color: $primary-color;
+    margin: 0 auto;
+    max-width: 1280px;
+    color: $text-color;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+a{
+    color: #FFFFFF
+}
+
+
+
+
+
+
+
+
+
+// import
+@import "./components/Home/home";
+@import "./components/NavBar/Navbar";
+@import "./components/Posts/posts";
+@import "./components/Posts/Post/post";
+@import "./components/Form/Form";
+@import "./components/auth/auth";

@@ -1,0 +1,74 @@
+.auth{
+    width: 100%;
+    margin: 5% 0;
+    text-align: center;
+    .container{
+        border-radius: 2px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        form.auth_sign{
+            padding: 15px;
+            border: .4px solid $secondary-color;
+            width: max-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            div{
+                background-color: $primary-color;
+                margin: 5px;
+                padding: 8px;
+                width: 100%;
+                text-align: start;
+                border-radius: 8px;
+                border: .3px solid $secondary-color;
+                label{
+
+                }
+                input{
+                    border: none;
+                    outline: none;
+                    background-color: $secondary-color;
+                    padding: 5px;
+                    width: calc(100% - 10px);
+                    border-radius: 8px;
+                    color: #fff;
+                    margin: 3px;
+                }
+            }
+            .password_block{
+                display: flex;
+                div{
+                    padding: 0%;
+                }
+            }
+            .buttons{
+                .sign_btn{
+                  text-align: center;
+                 .btn{
+                    border: none;
+                    outline: none;
+                    padding: 10px 20px;
+                    margin: 0 10px;
+                    margin-bottom: 5px;
+                    border-radius: 5px;
+                    color: #fff;
+                    font-weight: 500;
+                    cursor: pointer;
+                 }
+                 .sign{
+                   background-color: $blue;
+                 }
+                 .reset{
+                     background-color: red;
+                 }
+                }
+            }
+            .sign_in,.sign_up{
+                color: $blue;
+            }
+        }
+    }
+}
