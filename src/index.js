@@ -6,8 +6,12 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
 import { BrowserRouter as Router } from "react-router-dom";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+const store = createStore(
+  reducers,
+  composeWithDevTools(compose(applyMiddleware(thunk)))
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

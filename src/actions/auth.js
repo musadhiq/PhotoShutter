@@ -21,3 +21,8 @@ export const signIn = (user, Navigate) => async (dispatch) => {
     console.log(error.response.data.message);
   }
 };
+
+export const logOut = (Navigate) => async (dispatch) => {
+  localStorage.clear();
+  Navigate("/sign_in");
+};

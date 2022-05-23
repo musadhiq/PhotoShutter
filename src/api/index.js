@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({ baseURL: "https://mem-post.herokuapp.com" });
+console.log(process.env.API_URL);
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {

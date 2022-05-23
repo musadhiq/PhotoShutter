@@ -23,12 +23,17 @@ function Form({ submit, postData, setPostData }) {
     const isNull = postData.title === "" || postData.selectedFile === "";
     if (!isNull && postData._id) {
       dispatch(
-        updatePost({ ...postData, name: user?.result?.userName }, postData._id)
+        updatePost(
+          { ...postData, name: user?.result?.userName },
+          postData._id,
+          Navigate
+        )
       );
-      Navigate("/");
       handleClear();
     } else if (!isNull) {
-      dispatch(createPost({ ...postData, name: user?.result?.userName }));
+      dispatch(
+        createPost({ ...postData, name: user?.result?.userName }, Navigate)
+      );
       handleClear();
     } else {
       return "Fill the Values";

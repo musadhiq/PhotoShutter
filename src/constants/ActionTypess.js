@@ -9,3 +9,4 @@ export const EDIT_POST = "EDIT_POST";
 
 export const SIGNIN = "SIGNIN";
 export const SIGNUP = "SIGNUP";
+export const LOGOUT = "LOGOUT";

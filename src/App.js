@@ -7,11 +7,11 @@ import Posts from "./components/Posts/Posts";
 import Auth from "./components/auth/Auth";
 import Home from "./components/Home/Home";
 import Form from "./components/Form/Form";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
   const [post, setPost] = useState(true);
-
+  const location = useLocation();
   const [postData, setPostData] = useState({
     title: "",
     message: "",
@@ -25,7 +25,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch]);
+  }, [dispatch, location]);
   return (
     <div className="app">
       <NavBar />
