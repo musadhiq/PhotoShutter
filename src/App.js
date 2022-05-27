@@ -7,11 +7,9 @@ import Posts from "./components/Posts/Posts";
 import Auth from "./components/auth/Auth";
 import Home from "./components/Home/Home";
 import Form from "./components/Form/Form";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  const [post, setPost] = useState(true);
-  const location = useLocation();
   const [postData, setPostData] = useState({
     title: "",
     message: "",
@@ -19,13 +17,10 @@ function App() {
     selectedFile: "",
   });
 
-  const handlesubmit = () => {
-    setPost(!post);
-  };
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch, location]);
+  }, [dispatch]);
   return (
     <div className="app">
       <NavBar />
@@ -37,17 +32,13 @@ function App() {
           path="/new_post"
           element={
             <div className="form_container">
-              <Form
-                submit={handlesubmit}
-                postData={postData}
-                setPostData={setPostData}
-              />
+              <Form postData={postData} setPostData={setPostData} />
             </div>
           }
         />
       </Routes>
 
-      <Home handlesubmit={handlesubmit} post={post} />
+      <Home />
     </div>
   );
 }

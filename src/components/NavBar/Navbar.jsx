@@ -42,7 +42,7 @@ function NavBar() {
           <RiMenuUnfoldLine />
         </span>
         <Link to={"/"}>
-          <h1 className="logo">memmories</h1>
+          <h1 className="logo">PhotoShutter</h1>
         </Link>
       </div>
       {/* <div className="nav_search">
