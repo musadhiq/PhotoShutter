@@ -5,7 +5,7 @@ import { BsTrash } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { likePost, deletePost } from "../../../actions/posts";
 import { useNavigate } from "react-router-dom";
-import { GiAbstract090 } from "react-icons/gi";
+// import { GiAbstract090 } from "react-icons/gi";
 
 function Post({ data, setPostData }) {
   let user = " ";
@@ -40,7 +40,7 @@ function Post({ data, setPostData }) {
     <div className="post">
       <div className="overlay">
         <div className="user-avatar">
-          <div className="avatar">
+          {/* <div className="avatar">
             {data.creator ? (
               <img
                 src="https://images.unsplash.com/photo-1498598457418-36ef20772bb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
@@ -49,7 +49,7 @@ function Post({ data, setPostData }) {
             ) : (
               <GiAbstract090 />
             )}
-          </div>
+          </div> */}
           <span className="name">{data?.name}</span>
         </div>
 

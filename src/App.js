@@ -8,6 +8,10 @@ import Auth from "./components/auth/Auth";
 import Home from "./components/Home/Home";
 import Form from "./components/Form/Form";
 import { Route, Routes } from "react-router-dom";
+import { AuthVarify } from "./common/AuthVarify";
+import jwt from "jwt-decode";
+import { logOut } from "./actions/auth";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [postData, setPostData] = useState({
@@ -16,11 +20,15 @@ function App() {
     tags: "",
     selectedFile: "",
   });
-
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
+
   useEffect(() => {
     dispatch(getPosts());
+    AuthVarify(jwt, dispatch, logOut, Navigate);
+    // eslint-disable-next-line
   }, [dispatch]);
+
   return (
     <div className="app">
       <NavBar />
