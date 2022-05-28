@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://mem-post.herokuapp.com" });
-console.log(process.env.API_URL);
+const API = axios.create({ baseURL: "http://localhost:5000" });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
@@ -26,6 +25,8 @@ export const likePost = (id) => API.patch(`/posts/${id}/like`);
 export const deletePost = (id) => API.delete(`/posts/${id}/delete_post`);
 
 // auth
+
+export const getUser = (id) => API.get(`/user/${id}`);
 
 export const signUp = (user) => API.post("/user/new", user);
 

@@ -1,7 +1,9 @@
-import { SIGNIN, SIGNUP, LOGOUT } from "../constants/ActionTypess";
+import { SIGNIN, SIGNUP, LOGOUT, FETCHUSER } from "../constants/ActionTypess";
 
 export const authReducer = (user = {}, action) => {
   switch (action.type) {
+    case FETCHUSER:
+      return action.payload;
     case SIGNUP:
       return action.payload;
     case SIGNIN:

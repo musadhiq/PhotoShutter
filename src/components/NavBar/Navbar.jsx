@@ -57,9 +57,9 @@ function NavBar() {
       </div> */}
       <div className="user">
         {user?._id ? (
-          <div className="details">
+          <div className="details" onClick={handleToggler}>
             <span>{user?.userName} </span>
-            <span className="drop-down-icon" onClick={handleToggler}>
+            <span className="drop-down-icon">
               <RiArrowDropDownLine />
             </span>
             {toggler && (

@@ -25,7 +25,7 @@ export const createPost = (post, Navigate) => async (dispatch) => {
     console.log(data);
     Navigate("/");
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 

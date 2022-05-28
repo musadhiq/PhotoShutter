@@ -73,6 +73,21 @@
   animation: rotate-three 1s linear infinite;
   border-top: 3px solid #EFEFFA;
 }
+.content{
+  top: 100%;
+  text-align: center;
+  margin: 10px 0;
+  color: rgba(0, 0, 0, .3);
+  &::before{
+    content: attr(data-text);
+    position: absolute;
+    overflow: hidden;
+    max-width: 7em;
+    white-space: nowrap;
+    color: #fff;
+    animation: loading 3s linear infinite;
+  }
+}
   
 }
 @keyframes spin {
@@ -108,3 +123,8 @@
     }
   }
   
+  @keyframes loading {
+    0% {
+        max-width: 0;
+    }
+}
