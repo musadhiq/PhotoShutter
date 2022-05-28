@@ -8,27 +8,24 @@ import Auth from "./components/auth/Auth";
 import Home from "./components/Home/Home";
 import Form from "./components/Form/Form";
 import { Route, Routes } from "react-router-dom";
-import { AuthVarify } from "./common/AuthVarify";
-import jwt from "jwt-decode";
-import { logOut } from "./actions/auth";
-import { useNavigate } from "react-router-dom";
 
 function App() {
+  const [post, setPost] = useState(true);
+
   const [postData, setPostData] = useState({
     title: "",
     message: "",
     tags: "",
     selectedFile: "",
   });
-  const dispatch = useDispatch();
-  const Navigate = useNavigate();
 
+  const handlesubmit = () => {
+    setPost(!post);
+  };
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPosts());
-    AuthVarify(jwt, dispatch, logOut, Navigate);
-    // eslint-disable-next-line
   }, [dispatch]);
-
   return (
     <div className="app">
       <NavBar />
@@ -40,13 +37,17 @@ function App() {
           path="/new_post"
           element={
             <div className="form_container">
-              <Form postData={postData} setPostData={setPostData} />
+              <Form
+                submit={handlesubmit}
+                postData={postData}
+                setPostData={setPostData}
+              />
             </div>
           }
         />
       </Routes>
 
-      <Home />
+      <Home handlesubmit={handlesubmit} post={post} />
     </div>
   );
 }

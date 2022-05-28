@@ -1,12 +1,10 @@
 nav{
     min-height: 10vh;
     width: 100%;
-    padding: 0 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: .4px solid $light-dark;
-    font-size: 1rem;
     .nav_header{
         span.menu_icon{
             font-size: 1.5rem;
@@ -16,7 +14,6 @@ nav{
         h1.logo{
             display: inline-block;
             font-size: 1rem;
-            font-family: 'Roboto-regular';
         }
     }
     .nav_search{
@@ -55,8 +52,8 @@ nav{
             justify-content: center;
             align-items: center;
             position: relative;
-            cursor: pointer;
             .drop-down-icon{
+                cursor: pointer;
                 font-size: 2rem;
             }
             .drop-down{
@@ -69,6 +66,7 @@ nav{
                 z-index: 100;
                 width: max-content;
                 background-color: $secondary-color;
+                -moz-backface-visibility:blur(4) ;
                 padding: 10px 20px ;
                 border-radius: 2px;
                 .nav_userImg{

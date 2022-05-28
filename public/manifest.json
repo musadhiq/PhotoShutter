@@ -1,11 +1,6 @@
 {
-  "name": "PhotoShutter",
-  "short_name": "PhotoShutter",
-  "theme_color": "#18191a",
-  "background_color": "#18191a",
-  "display": "standalone",
-  "scope": "/",
-  "start_url": "/",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
@@ -13,20 +8,18 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo-192x192.png",
+      "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo-512x512.png",
+      "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
-    },
-    {
-      "src": "logo-192x192.png",
-      "sizes": "196x196",
-      "type": "image/png",
-      "purpose": "any maskable"
     }
-  ]
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }

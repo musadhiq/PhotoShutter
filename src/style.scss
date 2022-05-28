@@ -12,37 +12,15 @@ $text-color: #FFFFFF;
 $text-color-secondary: #73736F;
 $blue:#2563EB;
 
-
-
-//  fonts 
-
-@font-face {
-    font-family: 'Roboto-italic';
-    src: url("./res/fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf")
-}
-@font-face {
-    font-family: 'Roboto-regular';
-    src: url("./res/fonts/OpenSans-VariableFont_wdth\,wght.ttf");
-}
-
 // 
-$small: 420px;
+$small: 360px;
 $medium: 900px;
-html{
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    &::-webkit-scrollbar { 
-        display: none;  /* Safari and Chrome */
-    }
-}
-
 body{
     background-color: $primary-color;
     margin: 0 auto;
     max-width: 1280px;
     color: $text-color;
-    font-family: 'Roboto-regular';
-    font-size: 60%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 a{
@@ -64,4 +42,3 @@ a{
 @import "./components/Posts/Post/post";
 @import "./components/Form/Form";
 @import "./components/auth/auth";
-@import "./components/Loading/postLoading";
