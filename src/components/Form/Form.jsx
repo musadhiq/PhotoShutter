@@ -1,11 +1,15 @@
 import React from "react";
 import FileBase from "react-file-base64";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../actions/posts";
 import { VscEyeClosed } from "react-icons/vsc";
 import { Link, useNavigate } from "react-router-dom";
 
-function Form({ submit, postData, setPostData }) {
+function Form({ postData, setPostData }) {
+  const adata = useSelector((state) => state);
+
+  console.log(adata);
+
   const Navigate = useNavigate();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -23,12 +27,17 @@ function Form({ submit, postData, setPostData }) {
     const isNull = postData.title === "" || postData.selectedFile === "";
     if (!isNull && postData._id) {
       dispatch(
-        updatePost({ ...postData, name: user?.result?.userName }, postData._id)
+        updatePost(
+          { ...postData, name: user?.result?.userName },
+          postData._id,
+          Navigate
+        )
       );
-      Navigate("/");
       handleClear();
     } else if (!isNull) {
-      dispatch(createPost({ ...postData, name: user?.result?.userName }));
+      dispatch(
+        createPost({ ...postData, name: user?.result?.userName }, Navigate)
+      );
       handleClear();
     } else {
       return "Fill the Values";
@@ -39,7 +48,7 @@ function Form({ submit, postData, setPostData }) {
     <div className="form">
       <div className="close_container">
         <Link to={"/"}>
-          <VscEyeClosed className="close_btn" onClick={submit} />
+          <VscEyeClosed className="close_btn" onClick={() => Navigate("/")} />
         </Link>
       </div>
       <h1 className="heading">Create new Post</h1>

@@ -18,12 +18,14 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, Navigate) => async (dispatch) => {
   try {
     const { data } = await api.createPost(post);
     dispatch({ type: CREATE, payload: data });
+    console.log(data);
+    Navigate("/");
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
@@ -36,10 +38,11 @@ export const likePost = (id) => async (dispatch) => {
   }
 };
 
-export const updatePost = (updatePost, id) => async (dispatch) => {
+export const updatePost = (updatePost, id, Navigate) => async (dispatch) => {
   try {
     const { data } = await api.updatePost(updatePost, id);
     dispatch({ type: UPDATE, payload: data });
+    Navigate("/");
   } catch (error) {
     console.log(error);
   }

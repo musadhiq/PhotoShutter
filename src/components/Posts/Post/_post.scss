@@ -1,9 +1,9 @@
 .post{
     border: .1px solid $light-dark;
-    margin: 8px 14px;
+    padding-bottom: 8px;
     width: 280px;
     height: fit-content;
-    border-radius: 5px;
+    border-radius: 3px;
     overflow: hidden;
     position: relative;
     @media screen and (max-width: $small) {
@@ -15,14 +15,33 @@
         width: 100%;
         justify-content: space-between;
         align-items: center;
-        height: 28px;
-        font-size: 15px;
+        height: 30px;
+        font-size: .8rem;
         background-color: #fff;
-        font-weight: 500;
+        font-weight: 600;
         color: #000;
+        .user-avatar{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            .avatar{
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .name{
+
+            }
+        }
         .post_actions{
             display: flex;
             gap: 10px;
+            font-size: .9rem;
             .action{
                 cursor: pointer;
             }
@@ -42,22 +61,22 @@
     .post_content{
         padding: 10px;
         .post_header{
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             
         }
         p.details{
-            font-size: .9rem;
+            font-size: .7rem;
             max-height: 100px;
             overflow: hidden;
         }
     }
     .post_footer{
-        padding: 10px;
+        padding: 0 10px;
         .tags{
             color: $text-color-secondary;
-            font-size: .8rem;
+            font-size: .7rem;
         }
         
         .likes-bar{
@@ -66,13 +85,13 @@
             align-items: center;
             gap: 5px;
             span.likes{
-                font-size: 1.3rem;
+                font-size: 1.1rem;
                 .like{
                     cursor: pointer;
                 }
             }
             span.count{
-                font-size: .7rem;
+                font-size: .6rem;
                 font-family: cursive;
             }
         }

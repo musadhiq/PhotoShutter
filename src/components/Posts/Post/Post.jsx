@@ -5,6 +5,7 @@ import { BsTrash } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { likePost, deletePost } from "../../../actions/posts";
 import { useNavigate } from "react-router-dom";
+// import { GiAbstract090 } from "react-icons/gi";
 
 function Post({ data, setPostData }) {
   let user = " ";
@@ -38,7 +39,19 @@ function Post({ data, setPostData }) {
   return (
     <div className="post">
       <div className="overlay">
-        <span className="name">{data?.name}</span>
+        <div className="user-avatar">
+          {/* <div className="avatar">
+            {data.creator ? (
+              <img
+                src="https://images.unsplash.com/photo-1498598457418-36ef20772bb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                alt="avatar"
+              />
+            ) : (
+              <GiAbstract090 />
+            )}
+          </div> */}
+          <span className="name">{data?.name}</span>
+        </div>
 
         {user === data?.creator && (
           <i className="post_actions">
@@ -55,11 +68,6 @@ function Post({ data, setPostData }) {
         <p className="details">{data?.message}</p>
       </div>
       <div className="post_footer">
-        <div className="tags">
-          {data?.tags?.map((tag, index) => (
-            <span key={index}>#{tag} </span>
-          ))}
-        </div>
         <div className="likes-bar">
           {liked ? (
             <span className="likes">
@@ -71,6 +79,11 @@ function Post({ data, setPostData }) {
             </span>
           )}
           <span className="count">{likeCount}</span>
+        </div>
+        <div className="tags">
+          {data?.tags?.map((tag, index) => (
+            <span key={index}>#{tag} </span>
+          ))}
         </div>
       </div>
     </div>
