@@ -12,6 +12,7 @@ import { AuthVarify } from "./common/AuthVarify";
 import jwt from "jwt-decode";
 import { logOut } from "./actions/auth";
 import { useNavigate } from "react-router-dom";
+import { Error } from "./components/Error/Error";
 
 function App() {
   const [postData, setPostData] = useState({
@@ -20,12 +21,13 @@ function App() {
     tags: "",
     selectedFile: "",
   });
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const Navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getPosts());
-    AuthVarify(jwt, dispatch, logOut, Navigate);
+    AuthVarify(jwt, dispatch, logOut, Navigate, setError);
     // eslint-disable-next-line
   }, [dispatch]);
 
@@ -45,7 +47,7 @@ function App() {
           }
         />
       </Routes>
-
+      {error && <Error error={error} />}
       <Home />
     </div>
   );

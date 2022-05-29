@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { VscEyeClosed } from "react-icons/vsc";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn, signUp } from "../../actions/auth";
+import { Loader } from "../Loading/Loader";
+import { Error } from "../Error/Error";
 
 function Auth() {
   const Navigate = useNavigate();
@@ -16,6 +18,20 @@ function Auth() {
     confirmPassword: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  //loading
+
+  const userErr = useSelector((state) => state.auth);
+
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setError(false);
+    }, 5000);
+  }, [error]);
+
+  // signup //sign in
 
   //   password eye
   const handleShowPassword = () => {
@@ -35,12 +51,21 @@ function Auth() {
   };
 
   // sign up
+
+  const isNull = userData.email === "" || userData.password === "";
+
   const handleSignUp = (e) => {
     e.preventDefault();
+    if (isNull) return setError("Fill the Credentionals");
     if (userData.password !== userData.confirmPassword) {
-      console.log("password dosn't match");
+      setError("password dosn't match");
     } else {
       dispatch(signUp(userData, Navigate));
+      setLoader(true);
+      if (userErr?.message) {
+        setError(userErr.message);
+        setLoader(false);
+      }
     }
   };
 
@@ -48,13 +73,19 @@ function Auth() {
 
   const handleSignIn = (e) => {
     e.preventDefault();
+    if (isNull) return setError("Fill the Credentionals");
     dispatch(signIn(userData, Navigate));
+    setLoader(true);
+    if (userErr?.message) {
+      setError(userErr.message);
+      setLoader(false);
+    }
   };
 
-  if (window.location.pathname === "/sign_up") {
-    return (
-      <div className="auth">
-        <div className="container">
+  return (
+    <div className="auth">
+      <div className="container">
+        {window.location.pathname === "/sign_up" ? (
           <form className="auth_sign">
             <h1>Create Account </h1>
             <div>
@@ -148,14 +179,7 @@ function Auth() {
               </div>
             </div>
           </form>
-        </div>
-      </div>
-    );
-  }
-  if (window.location.pathname === "/sign_in") {
-    return (
-      <div className="auth">
-        <div className="container">
+        ) : (
           <form className="auth_sign">
             <h1>Login Account </h1>
             <div>
@@ -211,10 +235,12 @@ function Auth() {
               </div>
             </div>
           </form>
-        </div>
+        )}
+        {loader && <Loader />}
+        {error && <Error error={error} />}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Auth;

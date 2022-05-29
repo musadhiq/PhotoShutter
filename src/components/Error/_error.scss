@@ -1,0 +1,23 @@
+.error{
+    color: #fff;
+    font-size: .8rem;
+    position: absolute;
+    top: 8%;
+    right: 4%;
+    padding: 8px 15px;
+    background-color: #f00;
+    border-radius: 5px;
+    &::before{
+        content: " ";
+        background-color: #f00;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: -7px;
+        right: 0px;
+        clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+    }
+    .error-msg{
+        
+    }
+}

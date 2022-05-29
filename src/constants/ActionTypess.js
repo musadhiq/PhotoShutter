@@ -10,3 +10,7 @@ export const FETCHUSER = "FETCHUSER";
 export const SIGNIN = "SIGNIN";
 export const SIGNUP = "SIGNUP";
 export const LOGOUT = "LOGOUT";
+
+// error
+
+export const ERROR = "ERROR";

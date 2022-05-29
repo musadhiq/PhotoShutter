@@ -22,7 +22,7 @@ export const createPost = (post, Navigate) => async (dispatch) => {
   try {
     const { data } = await api.createPost(post);
     dispatch({ type: CREATE, payload: data });
-    console.log(data);
+
     Navigate("/");
   } catch (error) {
     console.log(error);

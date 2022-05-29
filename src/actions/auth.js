@@ -1,5 +1,5 @@
 import * as api from "../api";
-import { FETCHUSER, SIGNIN, SIGNUP } from "../constants/ActionTypess";
+import { ERROR, FETCHUSER, SIGNIN, SIGNUP } from "../constants/ActionTypess";
 
 export const signUp = (user, Navigate) => async (dispatch) => {
   try {
@@ -8,7 +8,7 @@ export const signUp = (user, Navigate) => async (dispatch) => {
     localStorage.setItem("profile", JSON.stringify(data));
     Navigate("/");
   } catch (error) {
-    console.log(error.response.data.message);
+    dispatch({ type: ERROR, payload: error.response.data });
   }
 };
 
@@ -19,7 +19,7 @@ export const signIn = (user, Navigate) => async (dispatch) => {
     localStorage.setItem("profile", JSON.stringify(data));
     Navigate("/");
   } catch (error) {
-    console.log(error.response.data.message);
+    dispatch({ type: ERROR, payload: error.response.data });
   }
 };
 
