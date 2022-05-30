@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { VscEyeClosed } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn, signUp } from "../../actions/auth";
 import { Loader } from "../Loading/Loader";
-import { Error } from "../Error/Error";
+import Error from "../Error/Error";
 
 function Auth() {
   const Navigate = useNavigate();
@@ -24,12 +24,6 @@ function Auth() {
 
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setError(false);
-    }, 5000);
-  }, [error]);
 
   // signup //sign in
 
@@ -62,6 +56,9 @@ function Auth() {
     } else {
       dispatch(signUp(userData, Navigate));
       setLoader(true);
+      setTimeout(() => {
+        setLoader(false);
+      }, 10000);
       if (userErr?.message) {
         setError(userErr.message);
         setLoader(false);
@@ -237,7 +234,7 @@ function Auth() {
           </form>
         )}
         {loader && <Loader />}
-        {error && <Error error={error} />}
+        {error && <Error error={error} setError={setError} />}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ import { AuthVarify } from "./common/AuthVarify";
 import jwt from "jwt-decode";
 import { logOut } from "./actions/auth";
 import { useNavigate } from "react-router-dom";
-import { Error } from "./components/Error/Error";
+import Error from "./components/Error/Error";
 
 function App() {
   const [postData, setPostData] = useState({
@@ -47,7 +47,7 @@ function App() {
           }
         />
       </Routes>
-      {error && <Error error={error} />}
+      {error && <Error error={error} setError={setError} />}
       <Home />
     </div>
   );

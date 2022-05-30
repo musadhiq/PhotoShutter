@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../actions/posts";
 import { VscEyeClosed } from "react-icons/vsc";
 import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../Loading/Loader";
-import { Error } from "../Error/Error";
+import Error from "../Error/Error";
 function Form({ postData, setPostData }) {
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(null);
@@ -51,12 +51,6 @@ function Form({ postData, setPostData }) {
   };
 
   // error handling
-
-  useEffect(() => {
-    setTimeout(() => {
-      setError(null);
-    }, 5000);
-  }, [error]);
   return (
     <>
       <div className="form">
@@ -134,7 +128,7 @@ function Form({ postData, setPostData }) {
         </form>
       </div>
       {/* error */}
-      {error && <Error error={error} />}
+      {error && <Error error={error} setError={setError} />}
       {/* loader */}
       {loader && (
         <div className="loader-container">
