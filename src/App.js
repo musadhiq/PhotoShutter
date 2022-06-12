@@ -61,10 +61,10 @@ function App() {
           path="/user/:name"
           element={<UserProfile userid={userid} setPostData={setPostData} />}
         />
-        <Route
+        {/* <Route
           path="/profile"
           element={<UserProfile userid={user?._id} setPostData={setPostData} />}
-        />
+        /> */}
       </Routes>
       {error && <Error error={error} setError={setError} />}
       <Home />

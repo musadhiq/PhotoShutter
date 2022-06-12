@@ -30,6 +30,10 @@
             .selected_file{
                 max-width: 600px;
                 max-height: 400px;
+                @media screen and (max-width: $small) {
+                    max-width: 95%;
+        
+                  }
             }
         }
         input,textarea{
