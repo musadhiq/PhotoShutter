@@ -41,7 +41,7 @@ body{
     margin: 0 auto;
     max-width: 1280px;
     color: $text-color;
-    font-family: 'Roboto-regular';
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
     font-size: 60%;
 }
 
@@ -51,10 +51,7 @@ a{
 
 
 
-
-
-
-
+// buttons
 
 
 // import
@@ -66,3 +63,38 @@ a{
 @import "./components/auth/auth";
 @import "./components/Loading/postLoading";
 @import "./components/Error/error";
+@import "./components/userProfile/userProfile";
+@import "./components/userProfile/EditProf/EditProf";
+
+
+.btn{
+    cursor: pointer;
+}
+.submit{
+    background-color: $blue;
+    color: $text-color;
+    border: none;
+    outline: none  ;
+    padding: 10px 15px;
+    border-radius: 5px;
+    &:active,&:focus{
+        color: $text-color;
+        outline: none;
+        border: none;
+    }
+}
+.cancel{
+    color: $text-color;
+    background-color: $primary-color;
+    outline: none  ;
+    padding: 10px 15px;
+    border-radius: 5px;
+    &:active,&:focus{
+        color: $primary-color;
+        outline: none;
+    }
+}
+
+input:disabled{
+    color: $secondary-color;
+}

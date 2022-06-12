@@ -45,6 +45,7 @@
   height: 64px;
   border-radius: 50%;
   perspective: 800px;
+
   .inner {
     position: absolute;
     box-sizing: border-box;
@@ -89,6 +90,9 @@
   }
 }
   
+}
+.top{
+ top: 20vh;   
 }
 @keyframes spin {
     0% { transform: rotate(0deg); }

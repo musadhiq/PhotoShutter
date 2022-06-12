@@ -31,3 +31,5 @@ export const getUser = (id) => API.get(`/user/${id}`);
 export const signUp = (user) => API.post("/user/new", user);
 
 export const signIn = (user) => API.post("/user/login", user);
+
+export const updateUser = (id, user) => API.patch(`/user/edit/${id}`, user);

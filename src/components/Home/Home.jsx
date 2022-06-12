@@ -1,5 +1,5 @@
 import React from "react";
-import { MdOutlinePostAdd } from "react-icons/md";
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -8,7 +8,7 @@ function Home() {
       {window.location.pathname === "/" && (
         <Link to={"/new_post"}>
           <div className="add_post_container">
-            <MdOutlinePostAdd className="add_post_btn" />
+            <AddAPhotoIcon className="add_post_btn" />
           </div>
         </Link>
       )}

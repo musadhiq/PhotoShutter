@@ -4,10 +4,10 @@ import { AiFillEdit } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { likePost, deletePost } from "../../../actions/posts";
-import { useNavigate } from "react-router-dom";
-// import { GiAbstract090 } from "react-icons/gi";
+import { Link, useNavigate } from "react-router-dom";
+import { GiAbstract090 } from "react-icons/gi";
 
-function Post({ data, setPostData }) {
+function Post({ data, setPostData, setUserId }) {
   let user = " ";
   if (localStorage.getItem("profile")) {
     user = JSON.parse(localStorage.getItem("profile")).result._id;
@@ -36,21 +36,37 @@ function Post({ data, setPostData }) {
     setPostData(data);
     Navigate("/new_post");
   };
+
   return (
     <div className="post">
       <div className="overlay">
         <div className="user-avatar">
-          {/* <div className="avatar">
-            {data.creator ? (
-              <img
-                src="https://images.unsplash.com/photo-1498598457418-36ef20772bb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                alt="avatar"
-              />
-            ) : (
-              <GiAbstract090 />
-            )}
-          </div> */}
-          <span className="name">{data?.name}</span>
+          <Link
+            onClick={() => {
+              setUserId(data.creator);
+            }}
+            to={
+              window.location.pathname.split("/")[1] === "user"
+                ? `/`
+                : `/user/${data.name}`
+            }
+          >
+            <div className="avatar">
+              {data.creator ? (
+                <img
+                  src={
+                    user.userImg
+                      ? user.userImg
+                      : "https://i.picsum.photos/id/1069/536/354.jpg?hmac=ywdE7hQ_NM4wnxJshRkXBsy-MHlGRylyqlb51WToAQA"
+                  }
+                  alt="avatar"
+                />
+              ) : (
+                <GiAbstract090 />
+              )}
+            </div>
+            <span className="name">{data?.name}</span>
+          </Link>
         </div>
 
         {user === data?.creator && (

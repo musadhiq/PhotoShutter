@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Loader = ({ content }) => {
+export const Loader = ({ content, top }) => {
   return (
     <>
-      <div className="loader">
+      <div className={top === true ? "loader top" : "loader"}>
         <div className="inner one"></div>
         <div className="inner two"></div>
         <div className="inner three"></div>

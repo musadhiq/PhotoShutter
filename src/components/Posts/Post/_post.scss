@@ -6,6 +6,10 @@
     border-radius: 3px;
     overflow: hidden;
     position: relative;
+    a{
+        color: #000;
+        text-decoration: none;
+    }
     @media screen and (max-width: $small) {
         width: 100%;
       }
@@ -24,6 +28,12 @@
             display: flex;
             align-items: center;
             gap: 5px;
+
+            a{
+                display: flex;
+                gap: 5px;
+                align-items: center;
+            }
             .avatar{
                 width: 26px;
                 height: 26px;

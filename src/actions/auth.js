@@ -1,5 +1,5 @@
 import * as api from "../api";
-import { ERROR, FETCHUSER, SIGNIN, SIGNUP } from "../constants/ActionTypess";
+import { ERROR, SIGNIN, SIGNUP } from "../constants/ActionTypess";
 
 export const signUp = (user, Navigate) => async (dispatch) => {
   try {
@@ -29,13 +29,3 @@ export const logOut = (Navigate) => async (dispatch) => {
 };
 
 //  fetch user
-
-export const fetchUser = (id) => async (dispatch) => {
-  try {
-    const { data } = await api.getUser(id);
-
-    dispatch({ type: FETCHUSER, payload: data });
-  } catch (error) {
-    console.log(error);
-  }
-};

@@ -3,7 +3,7 @@ import Post from "./Post/Post";
 import { useSelector } from "react-redux";
 import { Loader } from "../Loading/Loader";
 
-function Posts({ setPostData }) {
+function Posts({ setPostData, setUserId }) {
   const data = useSelector((state) => state.posts);
 
   return (
@@ -13,7 +13,12 @@ function Posts({ setPostData }) {
           .slice(0)
           .reverse()
           .map((item, index) => (
-            <Post data={item} key={index} setPostData={setPostData} />
+            <Post
+              data={item}
+              key={index}
+              setPostData={setPostData}
+              setUserId={setUserId}
+            />
           ))
       ) : (
         <Loader />

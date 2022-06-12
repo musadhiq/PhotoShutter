@@ -4,6 +4,7 @@ import {
   LOGOUT,
   FETCHUSER,
   ERROR,
+  UPDATEUSER,
 } from "../constants/ActionTypess";
 
 export const authReducer = (user = {}, action) => {
@@ -16,8 +17,11 @@ export const authReducer = (user = {}, action) => {
       return action.payload;
     case LOGOUT:
       return user;
+    case UPDATEUSER:
+      return action.payload;
     case ERROR:
       return action.payload;
+
     default:
       return user;
   }
