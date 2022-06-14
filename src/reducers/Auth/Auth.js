@@ -5,7 +5,7 @@ import {
   FETCHUSER,
   ERROR,
   UPDATEUSER,
-} from "../constants/ActionTypess";
+} from "../../constants/ActionTypess";
 
 export const authReducer = (user = {}, action) => {
   switch (action.type) {

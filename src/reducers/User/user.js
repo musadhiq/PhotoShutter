@@ -1,4 +1,4 @@
-import { FETCHUSER, UPDATEUSER } from "../constants/ActionTypess";
+import { FETCHUSER, UPDATEUSER, CLEARUSER } from "../../constants/ActionTypess";
 
 export const userReducer = (user = {}, action) => {
   switch (action.type) {
@@ -6,6 +6,8 @@ export const userReducer = (user = {}, action) => {
       return action.payload;
     case UPDATEUSER:
       return action.payload;
+    case CLEARUSER:
+      return user;
     default:
       return user;
   }

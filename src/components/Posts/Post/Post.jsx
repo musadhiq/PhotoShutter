@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { AiFillEdit } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { likePost, deletePost } from "../../../actions/posts";
 import { Link, useNavigate } from "react-router-dom";
-import { GiAbstract090 } from "react-icons/gi";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { userDetailsContext } from "../../../functions/Context/UserDetailsProvider";
+import { fetchUser } from "../../../actions/user";
 
-function Post({ data, setPostData, setUserId }) {
-  let user = " ";
-  if (localStorage.getItem("profile")) {
-    user = JSON.parse(localStorage.getItem("profile")).result._id;
-  }
+function Post({ data, users }) {
+  // context
+
+  const { setUserId, setPostData, user } = useContext(userDetailsContext);
+  const poster = users?.filter((user) => data?.creator === user._id)[0];
 
   const id = data?._id;
   const dispatch = useDispatch();
@@ -44,32 +47,38 @@ function Post({ data, setPostData, setUserId }) {
           <Link
             onClick={() => {
               setUserId(data.creator);
+              dispatch(fetchUser(data.creator));
             }}
-            to={
-              window.location.pathname.split("/")[1] === "user"
-                ? `/`
-                : `/user/${data.name}`
-            }
+            to={`/user/${data.name}`}
           >
             <div className="avatar">
-              {data.creator ? (
-                <img
-                  src={
-                    user.userImg
-                      ? user.userImg
-                      : "https://i.picsum.photos/id/1069/536/354.jpg?hmac=ywdE7hQ_NM4wnxJshRkXBsy-MHlGRylyqlb51WToAQA"
-                  }
-                  alt="avatar"
-                />
+              {poster ? (
+                <img src={poster.userImg} alt="avatar" />
               ) : (
-                <GiAbstract090 />
+                <Skeleton
+                  circle={true}
+                  height={26}
+                  highlightColor="#c0b9b97a"
+                  baseColor="#73736F"
+                />
               )}
             </div>
-            <span className="name">{data?.name}</span>
+            <span className="name">
+              {poster ? (
+                poster.userName
+              ) : (
+                <Skeleton
+                  width={160}
+                  height={15}
+                  highlightColor="#c0b9b97a"
+                  baseColor="#73736F"
+                />
+              )}
+            </span>
           </Link>
         </div>
 
-        {user === data?.creator && (
+        {user?._id === data?.creator && (
           <i className="post_actions">
             <BsTrash className="action" onClick={DeletePost} />
             <AiFillEdit className="action" onClick={EditPost} />
@@ -77,11 +86,19 @@ function Post({ data, setPostData, setUserId }) {
         )}
       </div>
       <div className="post_top">
-        <img src={data?.selectedFile} alt="post_image" />
+        {data.selectedFile ? (
+          <img src={data?.selectedFile} alt="post_image" />
+        ) : (
+          <Skeleton height={200} />
+        )}
       </div>
       <div className="post_content">
-        <h1 className="post_header">{data?.title}</h1>
-        <p className="details">{data?.message}</p>
+        <h1 className="post_header">
+          {data.title ? data?.title : <Skeleton height={15} />}
+        </h1>
+        <p className="details">
+          {data.message ? data?.message : <Skeleton height={10} />}
+        </p>
       </div>
       <div className="post_footer">
         <div className="likes-bar">
@@ -94,12 +111,16 @@ function Post({ data, setPostData, setUserId }) {
               <FcLikePlaceholder onClick={like} className="like" />
             </span>
           )}
-          <span className="count">{likeCount}</span>
+          <span className="count">
+            {likeCount ? likeCount : <Skeleton height={5} />}
+          </span>
         </div>
         <div className="tags">
-          {data?.tags?.map((tag, index) => (
-            <span key={index}>#{tag} </span>
-          ))}
+          {data.tags ? (
+            data?.tags?.map((tag, index) => <span key={index}>#{tag} </span>)
+          ) : (
+            <Skeleton height={5} />
+          )}
         </div>
       </div>
     </div>

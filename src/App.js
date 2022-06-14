@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./style.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "./actions/posts";
 import NavBar from "./components/NavBar/Navbar";
 import Posts from "./components/Posts/Posts";
@@ -14,58 +14,47 @@ import { logOut } from "./actions/auth";
 import { useNavigate } from "react-router-dom";
 import Error from "./components/Error/Error";
 import UserProfile from "./components/userProfile/userProfile";
+import { fetchUsers } from "./actions/user";
+import UserDetailsProvider from "./functions/Context/UserDetailsProvider";
 
 function App() {
-  // user
-  let user;
-  if (localStorage.getItem("profile")) {
-    user = JSON.parse(localStorage.getItem("profile")).result;
-  }
-
-  const [postData, setPostData] = useState({
-    title: "",
-    message: "",
-    tags: "",
-    selectedFile: "",
-  });
   const [error, setError] = useState(null);
-  const [userid, setUserId] = useState(null);
+  // const [userid, setUserId] = useState(null);
   const dispatch = useDispatch();
   const Navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getPosts());
+    dispatch(fetchUsers());
     AuthVarify(jwt, dispatch, logOut, Navigate, setError);
     // eslint-disable-next-line
   }, [dispatch]);
 
+  const users = useSelector((state) => state.users);
+
   return (
     <div className="app">
       <NavBar />
-      <Routes>
-        <Route
-          path="/"
-          element={<Posts setPostData={setPostData} setUserId={setUserId} />}
-        />
-        <Route path="sign_up" element={<Auth />} />
-        <Route path="sign_in" element={<Auth />} />
-        <Route
-          path="/new_post"
-          element={
-            <div className="form_container">
-              <Form postData={postData} setPostData={setPostData} />
-            </div>
-          }
-        />
-        <Route
-          path="/user/:name"
-          element={<UserProfile userid={userid} setPostData={setPostData} />}
-        />
-        {/* <Route
+      <UserDetailsProvider>
+        <Routes>
+          <Route path="/" element={<Posts users={users} />} />
+          <Route path="sign_up" element={<Auth />} />
+          <Route path="sign_in" element={<Auth />} />
+          <Route
+            path="/new_post"
+            element={
+              <div className="form_container">
+                <Form />
+              </div>
+            }
+          />
+          <Route path="/user/:name" element={<UserProfile users={users} />} />
+          {/* <Route
           path="/profile"
           element={<UserProfile userid={user?._id} setPostData={setPostData} />}
         /> */}
-      </Routes>
+        </Routes>
+      </UserDetailsProvider>
       {error && <Error error={error} setError={setError} />}
       <Home />
     </div>

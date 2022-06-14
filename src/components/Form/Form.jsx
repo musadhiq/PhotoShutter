@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../actions/posts";
-import { VscEyeClosed } from "react-icons/vsc";
+import HomeIcon from "@mui/icons-material/Home";
 import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../Loading/Loader";
 import Error from "../Error/Error";
-function Form({ postData, setPostData }) {
+import { userDetailsContext } from "../../functions/Context/UserDetailsProvider";
+
+function Form() {
+  // context
+
+  const { postData, setPostData } = useContext(userDetailsContext);
+  console.log(postData);
+
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(null);
   const Navigate = useNavigate();
@@ -56,20 +63,25 @@ function Form({ postData, setPostData }) {
       <div className="form">
         <div className="close_container">
           <Link to={"/"}>
-            <VscEyeClosed className="close_btn" onClick={() => Navigate("/")} />
+            <HomeIcon className="close_btn" onClick={() => Navigate("/")} />
           </Link>
         </div>
         <h1 className="heading">Create new Post</h1>
         <form className="form_field">
-          {postData.selectedFile && (
-            <div className="file_img">
-              <img
-                className="selected_file"
-                src={postData.selectedFile}
-                alt="post"
-              />
-            </div>
-          )}
+          <div className="file_img">
+            <img
+              className="selected_file"
+              src={
+                postData.selectedFile
+                  ? postData.selectedFile
+                  : "https://cdn.pixabay.com/photo/2018/11/13/22/01/instagram-3814084_960_720.png"
+              }
+              alt="post"
+              onClick={() => {
+                document.querySelector("input[type=file]").click();
+              }}
+            />
+          </div>
           <div className="file_upload">
             <FileBase
               type="file"
@@ -81,34 +93,52 @@ function Form({ postData, setPostData }) {
               }
             />
           </div>
-          <input
-            required
-            type="text"
-            name="title"
-            placeholder="Enter title"
-            value={postData.title}
-            onChange={(e) =>
-              setPostData({ ...postData, title: e.target.value })
-            }
-          />
-          <textarea
-            type="text"
-            name="message"
-            placeholder="Enter message"
-            value={postData.message}
-            onChange={(e) =>
-              setPostData({ ...postData, message: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            name="tags"
-            placeholder="Enter tags comma separated(max: 5)"
-            value={postData.tags}
-            onChange={(e) =>
-              setPostData({ ...postData, tags: e.target.value.split(",", 5) })
-            }
-          />
+
+          <div className="form-row">
+            <input
+              className="input-text"
+              type="text"
+              name="title"
+              placeholder="Enter Title"
+              value={postData.title}
+              onChange={(e) =>
+                setPostData({ ...postData, title: e.target.value })
+              }
+            />
+            <label className="label-helper" htmlFor="title">
+              Enter Title :
+            </label>
+          </div>
+          <div className="form-row">
+            <input
+              className="input-text"
+              type="text"
+              name="Message"
+              placeholder="Message"
+              value={postData.message}
+              onChange={(e) =>
+                setPostData({ ...postData, message: e.target.value })
+              }
+            />
+            <label className="label-helper" htmlFor="Message">
+              Message :
+            </label>
+          </div>
+          <div className="form-row">
+            <input
+              className="input-text"
+              type="text"
+              name="tags"
+              placeholder="Tags"
+              value={postData.tags}
+              onChange={(e) =>
+                setPostData({ ...postData, tags: e.target.value.split(",", 5) })
+              }
+            />
+            <label className="label-helper" htmlFor="tags">
+              Tags :
+            </label>
+          </div>
           <div className="buttons">
             <button
               className="btn btn_submit"

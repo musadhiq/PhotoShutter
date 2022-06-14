@@ -3,6 +3,7 @@ import React from "react";
 export const Loader = ({ content, top }) => {
   return (
     <>
+      <div className="overlay-loader"></div>
       <div className={top === true ? "loader top" : "loader"}>
         <div className="inner one"></div>
         <div className="inner two"></div>

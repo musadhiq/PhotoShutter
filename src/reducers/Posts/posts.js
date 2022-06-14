@@ -4,7 +4,7 @@ import {
   UPDATE,
   LIKE,
   DELETE,
-} from "../constants/ActionTypess";
+} from "../../constants/ActionTypess";
 
 export const postReducer = (posts = [], action) => {
   switch (action.type) {

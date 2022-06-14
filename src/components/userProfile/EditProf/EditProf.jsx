@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../../actions/user";
+import { userDetailsContext } from "../../../functions/Context/UserDetailsProvider";
 
-function EditProf({ setEditMode, userData, setUserData, user }) {
+function EditProf({ setEditMode, user }) {
+  // context
+
+  const { userId } = useContext(userDetailsContext);
+
+  const [userData, setUserData] = useState({
+    userName: user.userName,
+    Bio: user.Bio,
+    userImg: user.userImg,
+  });
+
   const dispatch = useDispatch();
-  console.log(userData);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setEditMode(false);
-    dispatch(updateUser(user, userData));
+    dispatch(updateUser(userId, userData));
   };
 
   return (
@@ -36,24 +47,34 @@ function EditProf({ setEditMode, userData, setUserData, user }) {
           />
         </div>
 
-        <input
-          type="text"
-          name="userName"
-          className="userName"
-          placeholder="userName"
-          value={userData.userName}
-          onChange={(e) =>
-            setUserData({ ...userData, userName: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          name="Bio"
-          className="bio"
-          placeholder="Say Something about you ⭐"
-          value={userData.Bio}
-          onChange={(e) => setUserData({ ...userData, Bio: e.target.value })}
-        />
+        <div className="form-row">
+          <input
+            className="input-text"
+            type="text"
+            name="username"
+            placeholder="userName "
+            value={userData.userName}
+            onChange={(e) =>
+              setUserData({ ...userData, userName: e.target.value })
+            }
+          />
+          <label className="label-helper" htmlFor="title">
+            UserName :
+          </label>
+        </div>
+        <div className="form-row">
+          <input
+            className="input-text"
+            type="text"
+            name="bio"
+            placeholder="Say Something about you ⭐"
+            value={userData.Bio}
+            onChange={(e) => setUserData({ ...userData, Bio: e.target.value })}
+          />
+          <label className="label-helper" htmlFor="title">
+            Bio :
+          </label>
+        </div>
         {/* <input
           type="password"
           name="Password"

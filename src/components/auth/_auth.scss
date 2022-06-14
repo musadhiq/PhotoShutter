@@ -11,37 +11,24 @@
         justify-content: center;
         form.auth_sign{
             padding: 15px;
-            width: max-content;
+            width: 400px;
             display: flex;
             justify-content: center;
-            align-items: center;
+            border: 1px solid $secondary-color;
+            align-items: stretch;
+            border-radius: 5px;
             flex-direction: column;
-            div{
-                background-color: $primary-color;
-                margin: 5px;
-                padding: 8px;
+            @media screen and (max-width: $small) {
                 width: 100%;
-                text-align: start;
-                border-radius: 8px;
-                label{
-
-                }
-                input{
-                    border: none;
-                    outline: none;
-                    background-color: $secondary-color;
-                    padding: 5px;
-                    width: calc(100% - 10px);
-                    border-radius: 8px;
-                    color: #fff;
-                    margin: 3px;
-                }
-            }
+              }
             .password_block{
                 display: flex;
-                div{
-                    padding: 0%;
-                    margin: 0;
+                padding: 0 10px;
+                div.pass-field{
+                    flex: 1;
+                    padding: 6px;
+                    margin-bottom: 20px;
+
                 }
             }
             .buttons{
@@ -72,3 +59,7 @@
         }
     }
 }
+
+
+
+

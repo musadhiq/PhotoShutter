@@ -1,5 +1,11 @@
 import * as api from "../api";
-import { ERROR, FETCHUSER, UPDATEUSER } from "../constants/ActionTypess";
+import {
+  ERROR,
+  FETCHUSER,
+  FETCHUSERS,
+  UPDATEUSER,
+  CLEARUSER,
+} from "../constants/ActionTypess";
 
 export const updateUser = (id, user) => async (dispatch) => {
   try {
@@ -18,4 +24,18 @@ export const fetchUser = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: ERROR, payload: error.response.data });
   }
+};
+
+export const fetchUsers = () => async (dispatch) => {
+  try {
+    const { data } = await api.getUsers();
+
+    dispatch({ type: FETCHUSERS, payload: data });
+  } catch (error) {
+    dispatch({ type: ERROR, payload: error.response.data });
+  }
+};
+
+export const clearUser = () => (dispatch) => {
+  dispatch({ type: CLEARUSER, payload: null });
 };

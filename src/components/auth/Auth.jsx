@@ -82,78 +82,145 @@ function Auth() {
   return (
     <div className="auth">
       <div className="container">
-        {window.location.pathname === "/sign_up" ? (
-          <form className="auth_sign">
-            <h1>Create Account </h1>
+        <form className="auth_sign">
+          {window.location.pathname === "/sign_up" ? (
             <div>
-              <label htmlFor="firstName">FirstName : </label>
-              <input
-                type="text"
-                name="firstName"
-                value={userData.firstName}
-                onChange={(e) =>
-                  setUserData({ ...userData, firstName: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <label htmlFor="lastName">LastName : </label>
-              <input
-                type="text"
-                name="lastName"
-                value={userData.lastName}
-                onChange={(e) =>
-                  setUserData({ ...userData, lastName: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <label htmlFor="email">Enter Email : </label>
-              <input
-                type="email"
-                name="email"
-                value={userData.email}
-                onChange={(e) =>
-                  setUserData({ ...userData, email: e.target.value })
-                }
-              />
-            </div>
+              <h1>Create Account </h1>
 
-            <div className="password_block">
-              <div>
-                <div>
-                  <label htmlFor="password"> Password : </label>
+              <div className="form-row">
+                <input
+                  className="input-text"
+                  type="text"
+                  name="firstName"
+                  placeholder="FirstName"
+                  value={userData.firstName}
+                  onChange={(e) =>
+                    setUserData({ ...userData, firstName: e.target.value })
+                  }
+                />
+                <label className="label-helper" htmlFor="firstName">
+                  FirstName
+                </label>
+              </div>
+              <div className="form-row">
+                <input
+                  className="input-text"
+                  type="text"
+                  name="lastName"
+                  placeholder="LastName"
+                  value={userData.lastName}
+                  onChange={(e) =>
+                    setUserData({ ...userData, lastName: e.target.value })
+                  }
+                />
+                <label className="label-helper" htmlFor="lastName">
+                  LastName
+                </label>
+              </div>
+              <div className="form-row">
+                <input
+                  className="input-text"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={userData.email}
+                  onChange={(e) =>
+                    setUserData({ ...userData, email: e.target.value })
+                  }
+                />
+                <label className="label-helper" htmlFor="email">
+                  Enter Email
+                </label>
+              </div>
+
+              <div className="password_block">
+                <div className="pass-field">
+                  <div className="form-row">
+                    <input
+                      className="input-text"
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      placeholder="password"
+                      value={userData.password}
+                      onChange={(e) =>
+                        setUserData({ ...userData, password: e.target.value })
+                      }
+                    />
+                    <label className="label-helper" htmlFor="password">
+                      {" "}
+                      Password :{" "}
+                    </label>
+                  </div>
+                  <div className="form-row">
+                    <input
+                      className="input-text"
+                      placeholder="Confirm Password"
+                      type={showPassword ? "text" : "password"}
+                      name="ConfirmPassword"
+                      value={userData.confirmPassword}
+                      onChange={(e) =>
+                        setUserData({
+                          ...userData,
+                          confirmPassword: e.target.value,
+                        })
+                      }
+                    />
+                    <label className="label-helper" htmlFor="ConfirmPassword">
+                      Confirm Password :{" "}
+                    </label>
+                  </div>
+                </div>
+                <i className="password_eye" onClick={handleShowPassword}>
+                  <VscEyeClosed />
+                </i>
+              </div>
+            </div>
+          ) : (
+            // </form>
+            // <form className="auth_sign">
+            <div>
+              <h1>Login Account </h1>
+              <div className="form-row">
+                <input
+                  className="input-text"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={userData.email}
+                  onChange={(e) =>
+                    setUserData({ ...userData, email: e.target.value })
+                  }
+                />
+                <label className="label-helper" htmlFor="email">
+                  Enter Email
+                </label>
+              </div>
+
+              <div className="password_block">
+                <div className="form-row pass-field">
                   <input
+                    className="input-text"
                     type={showPassword ? "text" : "password"}
                     name="password"
+                    placeholder="password"
                     value={userData.password}
                     onChange={(e) =>
                       setUserData({ ...userData, password: e.target.value })
                     }
                   />
+                  <label className="label-helper" htmlFor="password">
+                    Password :
+                  </label>
                 </div>
-                <div>
-                  <label htmlFor="ConfirmPassword">Confirm Password : </label>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    name="ConfirmPassword"
-                    value={userData.confirmPassword}
-                    onChange={(e) =>
-                      setUserData({
-                        ...userData,
-                        confirmPassword: e.target.value,
-                      })
-                    }
-                  />
-                </div>
+                <i className="password_eye" onClick={handleShowPassword}>
+                  <VscEyeClosed />
+                </i>
               </div>
-              <i className="password_eye" onClick={handleShowPassword}>
-                <VscEyeClosed />
-              </i>
             </div>
-
-            <div className="buttons">
-              <div className="sign_btn">
+          )}
+          <div className="buttons">
+            <div className="sign_btn">
+              {window.location.pathname === "/sign_up" ? (
                 <button
                   type="submit"
                   className="btn sign"
@@ -161,55 +228,7 @@ function Auth() {
                 >
                   Submit
                 </button>
-                <button
-                  type="reset"
-                  className="btn reset"
-                  onClick={handleReset}
-                >
-                  Reset
-                </button>
-                <br />
-                <i>Already have an Account? </i>
-                <Link className="sign_in" to={"/sign_in"}>
-                  Sign In
-                </Link>
-              </div>
-            </div>
-          </form>
-        ) : (
-          <form className="auth_sign">
-            <h1>Login Account </h1>
-            <div>
-              <label htmlFor="email">Enter Email : </label>
-              <input
-                type="email"
-                name="email"
-                value={userData.email}
-                onChange={(e) =>
-                  setUserData({ ...userData, email: e.target.value })
-                }
-              />
-            </div>
-
-            <div className="password_block">
-              <div>
-                <label htmlFor="password"> Password : </label>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={userData.password}
-                  onChange={(e) =>
-                    setUserData({ ...userData, password: e.target.value })
-                  }
-                />
-              </div>
-              <i className="password_eye" onClick={handleShowPassword}>
-                <VscEyeClosed />
-              </i>
-            </div>
-
-            <div className="buttons">
-              <div className="sign_btn">
+              ) : (
                 <button
                   type="submit"
                   className="btn sign"
@@ -217,22 +236,24 @@ function Auth() {
                 >
                   Login
                 </button>
-                <button
-                  type="reset"
-                  className="btn reset"
-                  onClick={handleReset}
-                >
-                  Reset
-                </button>
-                <br />
-                <i>Don't have an Account? </i>
-                <Link className="sign_up" to={"/sign_up"}>
+              )}
+              <button type="reset" className="btn reset" onClick={handleReset}>
+                Reset
+              </button>
+              <br />
+              <i>Already have an Account? </i>
+              {window.location.pathname === "/sign_up" ? (
+                <Link className="sign_in" to={"/sign_in"}>
+                  Sign In
+                </Link>
+              ) : (
+                <Link className="sign_in" to={"/sign_up"}>
                   Sign up
                 </Link>
-              </div>
+              )}
             </div>
-          </form>
-        )}
+          </div>
+        </form>
         {loader && <Loader />}
         {error && <Error error={error} setError={setError} />}
       </div>

@@ -18,8 +18,9 @@
     .form_field{
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
         margin: 20px 30px;
+        align-items: center;
+        justify-content: center;
         text-align: center;
         @media screen and (max-width: $small) {
             margin: 20px 0px;
@@ -36,22 +37,16 @@
                   }
             }
         }
-        input,textarea{
+        input{
             width: 100%;
             font-size: 1rem;
-            padding: 10px 15px;
-            margin: 5px 0;
-            resize: none;
-            border-radius: 5px;
-            background-color: $light-dark;
-            outline: none;
-            border: none;
             color: $text-color;
             &:active,&:focus{
                 color: $text-color;
-                outline: none;
-                border: none;
             }
+        }
+        input[type="file"]{
+            display: none;
         }
 
         .file_upload{
@@ -87,3 +82,50 @@
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.452);
 }
+
+.form-row {
+    width: 95%;
+    position: relative;
+    margin: 10px auto;
+    border-radius: 5px;
+    border: 0.1px solid $secondary-color;
+    .input-text {
+        background-color: #121212;
+        -webkit-appearance: none;
+        border: none;
+        font-family: Arial;
+        outline: none;
+        margin-bottom: 0px;
+        padding: 7px 4px;
+        font-size: 13px;
+        position: relative;
+        width: 100%;
+        color: #fff;
+    }
+    .label-helper {
+        position: absolute;
+        opacity: 0;
+        transition: .2s bottom, .2s opacity;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+         }
+
+         .input-text:focus + .label-helper,.input-text:active + .label-helper {
+            bottom: 77%;
+            font-family: arial;
+            font-size: 14px;
+            background-color: #121212;
+            line-height: 1;
+            opacity: 1;
+            padding: 4px;
+        }
+        .input-text:focus::placeholder {
+            color: transparent;
+          }
+
+}
+.input-text:disabled {
+    border: 1px solid red;
+}
+
