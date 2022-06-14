@@ -9,6 +9,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { userDetailsContext } from "../../../functions/Context/UserDetailsProvider";
 import { fetchUser } from "../../../actions/user";
+// import avatar from "../../../res/images/"
 
 function Post({ data, users }) {
   // context

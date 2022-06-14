@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../Loading/Loader";
 import Error from "../Error/Error";
 import { userDetailsContext } from "../../functions/Context/UserDetailsProvider";
+import addBtn from "../../res/images/addBtn.png";
 
 function Form() {
   // context
@@ -71,11 +72,7 @@ function Form() {
           <div className="file_img">
             <img
               className="selected_file"
-              src={
-                postData.selectedFile
-                  ? postData.selectedFile
-                  : "https://cdn.pixabay.com/photo/2018/11/13/22/01/instagram-3814084_960_720.png"
-              }
+              src={postData.selectedFile ? postData.selectedFile : addBtn}
               alt="post"
               onClick={() => {
                 document.querySelector("input[type=file]").click();

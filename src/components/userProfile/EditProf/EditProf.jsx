@@ -3,7 +3,7 @@ import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../../actions/user";
 import { userDetailsContext } from "../../../functions/Context/UserDetailsProvider";
-
+import addBtn from "../../../res/images/addBtn.png";
 function EditProf({ setEditMode, user }) {
   // context
 
@@ -29,7 +29,7 @@ function EditProf({ setEditMode, user }) {
         <div className="avatar">
           <img
             className="avatar-image"
-            src={userData.userImg}
+            src={userData.userImg ? userData.userImg : addBtn}
             alt="userImg"
             onClick={() => {
               document.querySelector("input[type=file]").click();
